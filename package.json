@@ -27,12 +27,6 @@
     "build-docs": "build-storybook --docs",
     "check-types": "tsc --noEmit"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run verify",
-      "pre-push": "npm run check-types"
-    }
-  },
   "author": "",
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.12",
