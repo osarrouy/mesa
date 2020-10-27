@@ -27,6 +27,12 @@ const BLACKLIST = {
   'VE': true,
 }
 
+const _country = async (): Promise<string> => {
+  const response = await fetch('http://api.ipstack.com/check?access_key=be714543d6ba090e438fda7aaa1a8259')
+  const data = await response.json()
+  return data.country_code
+}
+
 // wrapper
 const Wrapper: React.FC = () => {
   const [agree, setAgree] = React.useState(false)
@@ -34,19 +40,17 @@ const Wrapper: React.FC = () => {
   const [geoblocked, setGeoblocked] = React.useState(false)
 
   useEffect(() => {
-    const _country = async (): Promise<string> => {
-      const response = await fetch('https://freegeoip.app/json/')
-      const data = await response.json()
-
-      return data.country_code
-    }
-
-    _country().then((country) => {
-      if (BLACKLIST[country]) {
-        setGeoblocked(true)
-      }
-      setLocating(false)
-    })
+    _country()
+      .then((country) => {
+        if (BLACKLIST[country]) {
+          setGeoblocked(true)
+        }
+        setLocating(false)
+      })
+      .catch((e) => {
+        console.warn('Failed to geolocate IP address.')
+        console.warn(e)
+      })
   }, [])
 
   const agreed = (): void => {
