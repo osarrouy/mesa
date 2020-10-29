@@ -79,6 +79,8 @@ export const delay = <T>(ms = 100, result?: T): Promise<T> => new Promise((resol
  */
 export function getImageUrl(tokenAddress?: string): string | undefined {
   if (!tokenAddress) return undefined
+  if (tokenAddress === '0xE59064a8185Ed1Fca1D17999621eFedfab4425c9')
+    return './0xE59064a8185Ed1Fca1D17999621eFedfab4425c9.png'
   return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${tokenAddress}/logo.png`
 }
 
