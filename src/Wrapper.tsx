@@ -28,7 +28,7 @@ const BLACKLIST = {
 }
 
 const _country = async (): Promise<string> => {
-  const response = await fetch('http://api.ipstack.com/check?access_key=be714543d6ba090e438fda7aaa1a8259')
+  const response = await fetch('http://api.ipstack.com/check?access_key=0d88a37a243d8d0c9b7795eb5dfd40ad')
   const data = await response.json()
   return data.country_code
 }
